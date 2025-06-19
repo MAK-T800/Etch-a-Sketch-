@@ -22,7 +22,8 @@ function addHoverEffect() {
   const squares = document.querySelectorAll('.grid-square');
   squares.forEach(square => {
     square.addEventListener('mouseenter', () => {
-      square.style.backgroundColor = 'black';
+      square.style.backgroundColor = 'red';
+      square.style.opacity = 1; // Reset opacity on hover
     });
   });
 }
@@ -47,25 +48,15 @@ resizeBtn.addEventListener('click', () => {
 });
 
 /*Additional functionality to reset the grid*/
-function addAdvancedHoverEffect() {
+function addHoverEffect() {
   const squares = document.querySelectorAll('.grid-square');
   squares.forEach(square => {
     square.addEventListener('mouseenter', () => {
-      let currentColor = square.style.backgroundColor;
-      if (!currentColor || currentColor === 'rgb(0, 0, 0)') {
-        // Random RGB color
-        const r = Math.floor(Math.random() * 256);
-        const g = Math.floor(Math.random() * 256);
-        const b = Math.floor(Math.random() * 256);
-        square.style.backgroundColor = `rgb(${r},${g},${b})`;
-        square.style.opacity = 1;
-      } else {
-        // Progressive darkening by reducing opacity by 0.1
-        let currentOpacity = parseFloat(square.style.opacity) || 1;
-        if (currentOpacity > 0.1) {
-          square.style.opacity = currentOpacity - 0.1;
-        }
-      }
+      // Generate random RGB values
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
     });
   });
 }
