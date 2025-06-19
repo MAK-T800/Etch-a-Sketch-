@@ -45,3 +45,27 @@ resizeBtn.addEventListener('click', () => {
     alert('Invalid size. Please enter a number between 1 and 100.');
   }
 });
+
+/*Additional functionality to reset the grid*/
+function addAdvancedHoverEffect() {
+  const squares = document.querySelectorAll('.grid-square');
+  squares.forEach(square => {
+    square.addEventListener('mouseenter', () => {
+      let currentColor = square.style.backgroundColor;
+      if (!currentColor || currentColor === 'rgb(0, 0, 0)') {
+        // Random RGB color
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        square.style.backgroundColor = `rgb(${r},${g},${b})`;
+        square.style.opacity = 1;
+      } else {
+        // Progressive darkening by reducing opacity by 0.1
+        let currentOpacity = parseFloat(square.style.opacity) || 1;
+        if (currentOpacity > 0.1) {
+          square.style.opacity = currentOpacity - 0.1;
+        }
+      }
+    });
+  });
+}
